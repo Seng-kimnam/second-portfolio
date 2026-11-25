@@ -1,7 +1,13 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
+import { Science_Gothic } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+
+const scienceGothic = Science_Gothic({
+  subsets: ["latin"],
+  variable: "--font-science-gothic",
+});
 
 export const metadata: Metadata = {
   title: "Seng Kimnam - Portfolio",
@@ -41,7 +47,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-background" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`bg-background ${scienceGothic.variable}`}
+      suppressHydrationWarning
+    >
       <body className="antialiased bg-background text-foreground">
         <ThemeProvider>{children}</ThemeProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}

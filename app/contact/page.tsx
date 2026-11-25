@@ -7,6 +7,9 @@ import { Mail, Phone, MapPin, Share2, Code2, MessageSquare, Send } from 'lucide-
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const FORM_SUBMIT_ENDPOINT =
+  'https://formsubmit.co/ajax/sengkimnam97@gmail.com'
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -37,20 +40,28 @@ export default function ContactPage() {
     setError('')
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(FORM_SUBMIT_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New Contact Form Submission: ${formData.subject}`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
       })
 
+      const data = (await response.json()) as {
+        error?: string
+        message?: string
+      }
       if (!response.ok) {
-        const data = await response.json()
         throw new Error(data.error || 'Failed to send message')
       }
 
-      const data = await response.json()
       console.log('Message sent successfully:', data)
       setSubmitted(true)
       setFormData({ name: '', email: '', subject: '', message: '' })
@@ -110,7 +121,7 @@ export default function ContactPage() {
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
                         <Mail className="w-6 h-6 text-accent" />
                       </div>
                       <div> 
@@ -134,7 +145,7 @@ export default function ContactPage() {
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
                         <Phone className="w-6 h-6 text-accent" />
                       </div>
                       <div>
@@ -156,7 +167,7 @@ export default function ContactPage() {
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
                         <MapPin className="w-6 h-6 text-accent" />
                       </div>
                       <div>
