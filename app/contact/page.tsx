@@ -274,7 +274,7 @@ export default function ContactPage() {
                     Send Me a Message
                   </h2>
 
-                  <AnimatePresence>
+                  <AnimatePresence mode="sync">
                     {submitted && (
                       <motion.div
                         className="p-4 mb-6 bg-green-500/10 border border-green-500/20 rounded-lg"

@@ -7,6 +7,7 @@ import "./globals.css";
 const scienceGothic = Science_Gothic({
   subsets: ["latin"],
   variable: "--font-science-gothic",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
