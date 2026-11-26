@@ -1,156 +1,162 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
-import { ScrollAnimation } from '@/components/scroll-animation'
-import { GlassCard } from '@/components/ui/glass-card'
-import { PageHero } from '@/components/ui/page-hero'
-import { SiteShell } from '@/components/ui/site-shell'
+import { ScrollAnimation } from "@/components/scroll-animation";
+import { GlassCard } from "@/components/ui/glass-card";
+import { PageHero } from "@/components/ui/page-hero";
+import { SiteShell } from "@/components/ui/site-shell";
+import Link from "next/link";
 
 const skillCategories = [
   {
-    title: 'Design',
+    title: "Design",
     skills: [
-      { name: 'UI/UX Design', level: 95 },
-      { name: 'Figma', level: 95 },
-      { name: 'WordPress', level: 90 },
-      { name: 'Variant', level: 92 },
-      { name: 'User Research', level: 88 },
-      { name: 'ThemeSINE', level: 93 },
+      { name: "UI/UX Design", level: 95 },
+      { name: "Figma", level: 95 },
+      { name: "WordPress", level: 90 },
+      { name: "Variant", level: 92 },
+      { name: "User Research", level: 88 },
+      { name: "ThemeSINE", level: 93 },
     ],
   },
   {
-    title: 'Development',
+    title: "Development",
     skills: [
-      { name: 'React & Next.js', level: 94 },
-      { name: 'Java Spring Boot', level: 94 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Tailwind CSS', level: 95 },
-      { name: 'Responsive Design', level: 96 },
-      { name: 'Web APIs', level: 90 },
+      { name: "React & Next.js", level: 94 },
+      { name: "Java Spring Boot", level: 94 },
+      { name: "TypeScript", level: 90 },
+      { name: "Tailwind CSS", level: 95 },
+      { name: "Responsive Design", level: 96 },
+      { name: "Web APIs", level: 90 },
     ],
   },
   {
-    title: 'Strategy & Management',
+    title: "Strategy & Management",
     skills: [
-      { name: 'Project Management', level: 90 },
-      { name: 'Monolithic Architecture', level: 89 },
-      { name: 'Design Systems', level: 88 },
-      { name: 'Normalization & ERD', level: 91 },
-      { name: 'Agile Methodology', level: 91 },
-      { name: 'Team Leadership', level: 87 },
-      { name: 'Problem Solving', level: 94 },
+      { name: "Project Management", level: 90 },
+      { name: "Monolithic Architecture", level: 89 },
+      { name: "Design Systems", level: 88 },
+      { name: "Normalization & ERD", level: 91 },
+      { name: "Agile Methodology", level: 91 },
+      { name: "Team Leadership", level: 87 },
+      { name: "Problem Solving", level: 94 },
     ],
   },
   {
-    title: 'Tools & Technologies',
+    title: "Tools & Technologies",
     skills: [
-      { name: 'Git & GitHub', level: 92 },
-      { name: 'Vs Code & Codex', level: 85 },
-      { name: 'IntelliJ IDEA', level: 88 },
-      { name: 'Android Studio', level: 84 },
-      { name: 'Claude Code', level: 90 },
-      { name: 'Ubuntu', level: 84 },
-      { name: 'Docker', level: 78 },
+      { name: "Git & GitHub", level: 92 },
+      { name: "Vs Code & Codex", level: 85 },
+      { name: "IntelliJ IDEA", level: 88 },
+      { name: "Android Studio", level: 84 },
+      { name: "Claude Code", level: 90 },
+      { name: "Ubuntu", level: 84 },
+      { name: "Docker", level: 78 },
     ],
   },
-]
+];
 
 const additionalSkills = [
   {
-    category: 'Frontend Technologies',
+    category: "Frontend Technologies",
     items: [
-      'React',
-      'Next.js',
-      'Flutter',
-      'React Native',
-      'HTML5',
-      'CSS3',
-      'JavaScript',
-      'TypeScript',
-      'Tailwind CSS',
-      'Bootstrap',
-      'Material-UI',
-      'Shadcn UI',
-      'Framer Motion',
-      'Redux Toolkit',
-      'Zustand',
-      'Jest',
-      'PWA',
-      'Expo',
+      "React",
+      "Next.js",
+      "Flutter",
+      "React Native",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind CSS",
+      "Bootstrap",
+      "Material-UI",
+      "Shadcn UI",
+      "Framer Motion",
+      "Redux Toolkit",
+      "Zustand",
+      "Jest",
+      "PWA",
+      "Expo",
     ],
   },
   {
-    category: 'Backend Technologies',
+    category: "Backend Technologies",
     items: [
-      'Node.js',
-      'Express',
-      'NestJs',
-      'SQLite',
-      'PostgreSQL',
-      'MongoDB',
-      'Firebase',
-      'Rest API',
-      'GraphQL',
-      'PHP Laravel',
-      'Java Spring Boot',
-      'MySQL',
-      'Redis',
-      'Docker',
-      'JWT',
-      'OAuth2',
-      'WebSockets',
-      'RabbitMQ',
+      "Node.js",
+      "Express",
+      "NestJs",
+      "SQLite",
+      "PostgreSQL",
+      "MongoDB",
+      "Firebase",
+      "Rest API",
+      "GraphQL",
+      "PHP Laravel",
+      "Java Spring Boot",
+      "MySQL",
+      "Redis",
+      "Docker",
+      "JWT",
+      "OAuth2",
+      "WebSockets",
+      "RabbitMQ",
     ],
   },
   {
-    category: 'Design Principles',
+    category: "Design Principles",
     items: [
-      'Atomic Design',
-      'Design Systems',
-      'Accessibility',
-      'Design Thinking',
+      "Atomic Design",
+      "Design Systems",
+      "Accessibility",
+      "Design Thinking",
     ],
   },
   {
-    category: 'Soft Skills',
+    category: "Soft Skills",
     items: [
-      'Communication',
-      'Collaboration',
-      'Adaptability',
-      'Time Management',
-      'Discipline',
+      "Communication",
+      "Collaboration",
+      "Adaptability",
+      "Time Management",
+      "Discipline",
     ],
   },
-]
+];
 
 const certifications = [
   {
-    title: 'Google UX Design Professional Certificate',
-    issuer: 'Google | Coursera',
-    year: '2023',
+    title: "Introduction to DevOps",
+    link: "https://coursera.org/verify/LVSRTVD2W75X",
+    issuer: "IBM & Coursera",
+    year: "April 8, 2026",
   },
   {
-    title: 'Advanced React Development',
-    issuer: 'Frontend Masters',
-    year: '2023',
+    title: "Python for Data Science & AI: Hands-On Development",
+    link: "https://www.coursera.org/account/accomplishments/verify/0R9XXNG8OKN0",
+    issuer: "IBM & Coursera",
+    year: "April 8, 2026",
   },
   {
-    title: 'Web Performance Optimization',
-    issuer: 'Web.dev by Google',
-    year: '2022',
+    title: "Getting Started with Git and GitHub",
+    link: "https://www.coursera.org/account/accomplishments/verify/NX0G4KAEFBOK",
+    issuer: "IBM & Coursera",
+    year: "April 8, 2026",
   },
   {
-    title: 'Design Systems Masterclass',
-    issuer: 'Interaction Design Foundation',
-    year: '2022',
+    title: "Introduction to Cloud Computing",
+    link: "https://www.coursera.org/account/accomplishments/verify/23KWU4JH23HU",
+    issuer: "IBM & Coursera",
+    year: "April 9, 2026",
   },
   {
-    title: 'AWS Cloud Practitioner',
-    issuer: 'Amazon Web Services',
-    year: '2021',
+    title: "Hands-on Introduction to Linux Commands and Shell Scripting",
+    link: "https://www.coursera.org/account/accomplishments/verify/WJKBJKCNV4RJ",
+    issuer: "IBM & Coursera",
+    year: "April 8, 2026",
   },
-]
+];
 
 export default function SkillsPage() {
   return (
@@ -195,13 +201,13 @@ export default function SkillsPage() {
                         >
                           <motion.div
                             className="glass-progress__fill"
-                            initial={{ width: '0%' }}
+                            initial={{ width: "0%" }}
                             whileInView={{ width: `${skill.level}%` }}
                             viewport={{ once: true }}
                             transition={{
                               duration: 1.2,
                               delay: 0.2 + skillIndex * 0.05,
-                              ease: 'easeOut',
+                              ease: "easeOut",
                             }}
                           />
                         </div>
@@ -265,27 +271,33 @@ export default function SkillsPage() {
                 variant="fadeInUp"
                 delay={certIndex * 0.08}
               >
-                <GlassCard
-                  interactive
-                  className="flex items-start  justify-between gap-4 p-6 sm:p-8"
+                <Link
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <div>
-                    <h3 className="font-semibold text-foreground">
-                      {cert.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {cert.issuer}
-                    </p>
-                  </div>
-                  <span className="shrink-0 text-sm font-medium text-accent">
-                    {cert.year}
-                  </span>
-                </GlassCard>
+                  <GlassCard
+                    interactive
+                    className="flex items-start  justify-between gap-4 p-6 sm:p-8"
+                  >
+                    <div>
+                      <h3 className="font-semibold text-foreground">
+                        {cert.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {cert.issuer}
+                      </p>
+                    </div>
+                    <span className="shrink-0 text-sm font-medium text-accent">
+                      {cert.year}
+                    </span>
+                  </GlassCard>
+                </Link>
               </ScrollAnimation>
             ))}
           </div>
         </div>
       </section>
     </SiteShell>
-  )
+  );
 }

@@ -1,47 +1,32 @@
-import type { Metadata } from 'next'
-import { Calendar, MapPin } from 'lucide-react'
+import type { Metadata } from "next";
+import { Calendar, MapPin } from "lucide-react";
 
-import { GlassCard } from '@/components/ui/glass-card'
-import { PageHero } from '@/components/ui/page-hero'
-import { SiteShell } from '@/components/ui/site-shell'
-import { createPageMetadata } from '@/lib/page-metadata'
+import { GlassCard } from "@/components/ui/glass-card";
+import { PageHero } from "@/components/ui/page-hero";
+import { SiteShell } from "@/components/ui/site-shell";
+import { createPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = createPageMetadata(
-  'Work Experience',
-  'My professional experience, roles, and hands-on engineering work.',
-)
+  "Work Experience",
+  "My professional experience, roles, and hands-on engineering work.",
+);
 
 const experiences = [
   {
-    title: 'Junior Software Developer',
-    company: 'One World Information Technology.',
-    location: 'Morgan Tower, Phnom Penh, Cambodia',
-    duration: 'July 2026 - August 2026',
+    title: "Junior Software Developer",
+    company: "One World Information Technology.",
+    location: "Morgan Tower, Phnom Penh, Cambodia",
+    duration: "July 2026 - August 2026",
     description:
-      'Develop odoo ERP Software to meet Cambodia Market and solve business owner problem',
+      "Develop odoo ERP Software to meet Cambodia Market and solve business owner problem",
     highlights: [
-      'Using XML, python with FastAPI, and an Owl library, for database we use PostgreSQL and PostgRest for Rest API',
-      'Using Docker in Ubuntu Linux distribution during working with dockercompose.yml for running container of application',
-      'Build an Rest API using postgrest web server with database postgreSQL',
-      'Using GitHub for version control and GitHub Actions for CI/CD and distribute with team members',
+      "Using XML, python with FastAPI, and an Owl library, for database we use PostgreSQL and PostgRest for Rest API",
+      "Using Docker in Ubuntu Linux distribution during working with dockercompose.yml for running container of application",
+      "Build an Rest API using postgrest web server with database postgreSQL",
+      "Using GitHub for version control and GitHub Actions for CI/CD and distribute with team members",
     ],
   },
-]
-
-const education = [
-  {
-    degree: 'Bachelor of Science in Computer Science',
-    school: 'State University',
-    year: '2015',
-    gpa: '3.8 GPA',
-  },
-  {
-    degree: 'Master of Design (Human-Centered Design)',
-    school: 'Design Institute',
-    year: '2018',
-    gpa: '4.0 GPA',
-  },
-]
+];
 
 export default function ExperiencePage() {
   return (
@@ -114,27 +99,6 @@ export default function ExperiencePage() {
           </div>
         </div>
       </section>
-
-      <section className="page-section glass-divider-x">
-        <div className="page-container">
-          <h2 className="mb-12 text-3xl font-bold text-foreground">Education</h2>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {education.map((edu) => (
-              <GlassCard key={edu.degree} className="p-6 sm:p-8">
-                <h3 className="mb-2 text-lg font-bold text-foreground">
-                  {edu.degree}
-                </h3>
-                <p className="mb-2 font-semibold text-accent">{edu.school}</p>
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>{edu.year}</span>
-                  <span>{edu.gpa}</span>
-                </div>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </section>
     </SiteShell>
-  )
+  );
 }

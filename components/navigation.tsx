@@ -124,7 +124,7 @@ export function Navigation() {
                       'block rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 hover:translate-x-1',
                       isActive(link.href)
                         ? 'bg-accent text-accent-foreground'
-                        : 'text-muted-foreground hover:bg-[var(--glass-bg-hover)] hover:text-foreground',
+                        : 'text-muted-foreground hover:bg-(--glass-bg-hover) hover:text-foreground',
                     )}
                   >
                     {link.label}
