@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 interface ScrollAnimationProps {
   children: ReactNode
@@ -15,42 +15,40 @@ interface ScrollAnimationProps {
   className?: string
 }
 
+/* Transform-only entrances: opacity on a wrapper would turn it into a backdrop
+   root, so any GlassCard inside would stop blurring the page background. */
 const variants = {
   fadeInUp: {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { y: 40 },
     visible: (custom: number) => ({
-      opacity: 1,
       y: 0,
       transition: { duration: 0.6, ease: 'easeOut', delay: custom },
     }),
   },
   fadeIn: {
-    hidden: { opacity: 0 },
+    hidden: { scale: 0.98 },
     visible: (custom: number) => ({
-      opacity: 1,
+      scale: 1,
       transition: { duration: 0.6, ease: 'easeOut', delay: custom },
     }),
   },
   slideInLeft: {
-    hidden: { opacity: 0, x: -60 },
+    hidden: { x: -60 },
     visible: (custom: number) => ({
-      opacity: 1,
       x: 0,
       transition: { duration: 0.6, ease: 'easeOut', delay: custom },
     }),
   },
   slideInRight: {
-    hidden: { opacity: 0, x: 60 },
+    hidden: { x: 60 },
     visible: (custom: number) => ({
-      opacity: 1,
       x: 0,
       transition: { duration: 0.6, ease: 'easeOut', delay: custom },
     }),
   },
   scaleIn: {
-    hidden: { opacity: 0, scale: 0.85 },
+    hidden: { scale: 0.85 },
     visible: (custom: number) => ({
-      opacity: 1,
       scale: 1,
       transition: { duration: 0.6, ease: 'easeOut', delay: custom },
     }),

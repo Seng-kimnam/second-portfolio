@@ -1,29 +1,25 @@
 import type { Metadata } from "next";
-import { Footer } from "@/components/footer";
-import { Navigation } from "@/components/navigation";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Seng Kimnam",
-  description: "How Seng Kimnam's portfolio website handles personal information.",
-};
+import { PageHero } from "@/components/ui/page-hero";
+import { SiteShell } from "@/components/ui/site-shell";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = createPageMetadata(
+  "Privacy Policy",
+  "How Seng Kimnam's portfolio website handles personal information.",
+);
 
 const updatedOn = "November 26, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Navigation />
-      <main className="flex-1">
-        <section className="bg-muted border-b border-border">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h1 className="text-5xl sm:text-6xl font-bold text-balance mb-4">
-              Privacy Policy
-            </h1>
-            <p className="text-muted-foreground">Last updated: {updatedOn}</p>
-          </div>
-        </section>
+    <SiteShell>
+      <PageHero
+        title="Privacy Policy"
+        description={`Last updated: ${updatedOn}`}
+      />
 
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8 text-muted-foreground leading-relaxed">
+      <article className="page-container page-section max-w-4xl space-y-8 text-muted-foreground leading-relaxed">
           <p>
             This policy explains how Seng Kimnam (“I,” “me,” or “my”) handles
             information when you visit this portfolio website or contact me
@@ -151,9 +147,7 @@ export default function PrivacyPolicyPage() {
               .
             </p>
           </section>
-        </article>
-      </main>
-      <Footer />
-    </div>
+      </article>
+    </SiteShell>
   );
 }

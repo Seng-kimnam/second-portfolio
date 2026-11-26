@@ -1,45 +1,48 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 import { Moon, Sun } from 'lucide-react'
-import { motion } from 'framer-motion'
+
+import { GlassButton } from '@/components/ui/glass-button'
+
+function subscribe() {
+  return () => {}
+}
+
+function getSnapshot() {
+  return true
+}
+
+function getServerSnapshot() {
+  return false
+}
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false)
+  const mounted = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  )
   const { theme, setTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   if (!mounted) return null
 
+  const nextTheme = theme === 'dark' ? 'light' : 'dark'
+
   return (
-    <motion.button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-lg bg-muted cursor-pointer hover:bg-border transition-colors"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      aria-label="Toggle theme"
+    <GlassButton
+      variant="secondary"
+      size="icon"
+      onClick={() => setTheme(nextTheme)}
+      aria-label={`Switch to ${nextTheme} theme`}
+      aria-pressed={theme === 'dark'}
     >
       {theme === 'dark' ? (
-        <motion.div
-          initial={{ rotate: -180, opacity: 0 }}
-          animate={{ rotate: 0, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Sun className="w-5 h-5 text-accent" />
-        </motion.div>
+        <Sun aria-hidden="true" className="h-5 w-5 text-accent" />
       ) : (
-        <motion.div
-          initial={{ rotate: -180, opacity: 0 }}
-          animate={{ rotate: 0, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Moon className="w-5 h-5 text-accent" />
-        </motion.div>
+        <Moon aria-hidden="true" className="h-5 w-5 text-accent" />
       )}
-    </motion.button>
+    </GlassButton>
   )
 }
