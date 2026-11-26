@@ -1,79 +1,88 @@
-'use client'
+"use client";
 
-import { Navigation } from '@/components/navigation'
-import { Footer } from '@/components/footer'
-import { ScrollAnimation } from '@/components/scroll-animation'
-import { Mail, Phone, MapPin, Share2, Code2, MessageSquare, Send } from 'lucide-react'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { ScrollAnimation } from "@/components/scroll-animation";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Share2,
+  Code2,
+  MessageSquare,
+  Send,
+} from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FORM_SUBMIT_ENDPOINT =
-  'https://formsubmit.co/ajax/sengkimnam97@gmail.com'
+  "https://formsubmit.co/ajax/sengkimnam97@gmail.com";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
     try {
       const response = await fetch(FORM_SUBMIT_ENDPOINT, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
           ...formData,
           _subject: `New Contact Form Submission: ${formData.subject}`,
-          _captcha: 'false',
-          _template: 'table',
+          _captcha: "false",
+          _template: "table",
         }),
-      })
+      });
 
       const data = (await response.json()) as {
-        error?: string
-        message?: string
-      }
+        error?: string;
+        message?: string;
+      };
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
+        throw new Error(data.error || "Failed to send message");
       }
 
-      console.log('Message sent successfully:', data)
-      setSubmitted(true)
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setTimeout(() => setSubmitted(false), 5000)
+      console.log("Message sent successfully:", data);
+      setSubmitted(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred'
-      setError(errorMessage)
-      console.error('Contact form error:', err)
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred";
+      setError(errorMessage);
+      console.error("Contact form error:", err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -124,7 +133,7 @@ export default function ContactPage() {
                       <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
                         <Mail className="w-6 h-6 text-accent" />
                       </div>
-                      <div> 
+                      <div>
                         <h3 className="font-semibold text-foreground mb-1">
                           Email
                         </h3>
@@ -156,7 +165,7 @@ export default function ContactPage() {
                           +855 (0) 87-727-254
                         </p>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Mon-Fri, 9am-6pm GMT+7  
+                          Mon-Fri, 9am-6pm GMT+7
                         </p>
                       </div>
                     </motion.a>
@@ -193,9 +202,16 @@ export default function ContactPage() {
                     </h3>
                     <div className="flex gap-3">
                       {[
-                        { href: 'https://www.linkedin.com/in/kimnam-seng-31595b2b8/', icon: Share2, label: 'LinkedIn' },
-                        { href: 'https://github.com/Seng-kimnam', icon: Code2, label: 'GitHub' },
-                          
+                        {
+                          href: "https://www.linkedin.com/in/kimnam-seng-31595b2b8/",
+                          icon: Share2,
+                          label: "LinkedIn",
+                        },
+                        {
+                          href: "https://github.com/Seng-kimnam",
+                          icon: Code2,
+                          label: "GitHub",
+                        },
                       ].map((social, idx) => (
                         <motion.a
                           key={social.label}
@@ -221,12 +237,17 @@ export default function ContactPage() {
                 <ScrollAnimation variant="slideInLeft" delay={0.2}>
                   <motion.div
                     className="p-4 bg-accent/10 rounded-lg border border-accent/20"
-                    whileHover={{ boxShadow: '0 10px 30px rgba(31, 153, 84, 0.1)' }}
+                    whileHover={{
+                      boxShadow: "0 10px 30px rgba(31, 153, 84, 0.1)",
+                    }}
                     transition={{ duration: 0.3 }}
                   >
-                    <h3 className="font-semibold text-foreground mb-2">Availability</h3>
+                    <h3 className="font-semibold text-foreground mb-2">
+                      Availability
+                    </h3>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Currently available for freelance projects and full-time opportunities.
+                      Currently available for freelance projects and full-time
+                      opportunities.
                     </p>
                     <div className="flex items-center gap-2">
                       <motion.span
@@ -234,7 +255,9 @@ export default function ContactPage() {
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ repeat: Infinity, duration: 2 }}
                       />
-                      <p className="text-sm font-medium text-foreground">Open for new projects</p>
+                      <p className="text-sm font-medium text-foreground">
+                        Open for new projects
+                      </p>
                     </div>
                   </motion.div>
                 </ScrollAnimation>
@@ -244,7 +267,7 @@ export default function ContactPage() {
               <ScrollAnimation variant="slideInRight" className="lg:col-span-2">
                 <motion.div
                   className="p-8 bg-muted rounded-lg border border-border"
-                  whileHover={{ boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}
+                  whileHover={{ boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="text-2xl font-bold text-foreground mb-6">
@@ -261,7 +284,8 @@ export default function ContactPage() {
                         transition={{ duration: 0.3 }}
                       >
                         <p className="text-green-700 dark:text-green-400 text-sm font-medium">
-                          ✓ Message sent successfully! I&apos;ll get back to you soon.
+                          ✓ Message sent successfully! I&apos;ll get back to you
+                          soon.
                         </p>
                       </motion.div>
                     )}
@@ -370,7 +394,7 @@ export default function ContactPage() {
                     <motion.button
                       type="submit"
                       disabled={loading}
-                      className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                       whileHover={{ scale: loading ? 1 : 1.02 }}
                       whileTap={{ scale: loading ? 1 : 0.98 }}
                     >
@@ -378,7 +402,11 @@ export default function ContactPage() {
                         <>
                           <motion.span
                             animate={{ rotate: 360 }}
-                            transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+                            transition={{
+                              repeat: Infinity,
+                              duration: 1,
+                              ease: "linear",
+                            }}
                           >
                             ⏳
                           </motion.span>
@@ -412,20 +440,20 @@ export default function ContactPage() {
             <div className="space-y-4">
               {[
                 {
-                  q: 'What is your typical project turnaround time?',
-                  a: 'Most projects take 2-8 weeks depending on scope. I provide detailed timelines during the initial consultation.',
+                  q: "What is your typical project turnaround time?",
+                  a: "Most projects take 2-8 weeks depending on scope. I provide detailed timelines during the initial consultation.",
                 },
                 {
-                  q: 'Do you offer retainer services?',
-                  a: 'Yes! I offer flexible retainer packages for ongoing design and development support.',
+                  q: "Do you offer retainer services?",
+                  a: "Yes! I offer flexible retainer packages for ongoing design and development support.",
                 },
                 {
-                  q: 'What is your pricing model?',
-                  a: 'I offer project-based pricing, hourly rates, and retainer options. Let&apos;s discuss what works best for you.',
+                  q: "What is your pricing model?",
+                  a: "I offer project-based pricing, hourly rates, and retainer options. Let&apos;s discuss what works best for you.",
                 },
                 {
-                  q: 'Can you work with my existing team?',
-                  a: 'Absolutely! I thrive in collaborative environments and integrate seamlessly with your team.',
+                  q: "Can you work with my existing team?",
+                  a: "Absolutely! I thrive in collaborative environments and integrate seamlessly with your team.",
                 },
               ].map((faq, idx) => (
                 <details
@@ -450,5 +478,5 @@ export default function ContactPage() {
 
       <Footer />
     </div>
-  )
+  );
 }

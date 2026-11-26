@@ -31,7 +31,7 @@ export default function ProfilePage() {
                 <div className="mb-8">
                   <div className="w-full aspect-square bg-muted rounded-xl flex items-center justify-center text-6xl mb-6">
                     <img
-                      src="/ai_image.jpg"
+                      src="/me-at-smart-start.jpg"
                       alt="Avatar"
                       className="w-full h-full object-cover rounded-xl"
                     />
@@ -60,7 +60,10 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Download CV */}
-                <Link href="https://drive.google.com/file/d/1sBWhlw8STxw3qpPA2dQEzuYwvrAaG0OP/view?usp=sharing" className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity mb-8">
+                <Link
+                  href="https://drive.google.com/file/d/1sBWhlw8STxw3qpPA2dQEzuYwvrAaG0OP/view?usp=sharing"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity mb-8"
+                >
                   <Download className="w-5 h-5" />
                   Download CV
                 </Link>
@@ -73,7 +76,6 @@ export default function ProfilePage() {
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li>Khmer - Native</li>
                     <li>English - Upper-Intermediate</li>
-                    
                   </ul>
                 </div>
               </div>

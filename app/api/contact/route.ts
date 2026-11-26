@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       read: false,
     })
 
-    console.log('Contact stored in Firestore:', docRef.id)
+   
 
     // Send email notification to admin
     const adminMailOptions = {
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     }
 
     await transporter.sendMail(adminMailOptions)
-    console.log('Admin notification email sent')
+
 
     // Send confirmation email to user
     const userMailOptions = {
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
     }
 
     await transporter.sendMail(userMailOptions)
-    console.log('User confirmation email sent to:', email)
+  
 
     return NextResponse.json(
       {
@@ -92,7 +92,6 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
   } catch (error) {
-    console.error('Error processing contact form:', error)
     return NextResponse.json(
       {
         error: 'Failed to process your message. Please try again later.',
@@ -120,7 +119,7 @@ export async function GET(request: NextRequest) {
       message: 'Use Firestore console to view contacts',
     })
   } catch (error) {
-    console.error('Error fetching contacts:', error)
+   
     return NextResponse.json(
       { error: 'Failed to fetch contacts' },
       { status: 500 }

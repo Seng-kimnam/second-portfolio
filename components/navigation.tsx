@@ -79,7 +79,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 cursor-pointer text-foreground hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >

@@ -1,20 +1,21 @@
-import { Navigation } from '@/components/navigation'
-import { Footer } from '@/components/footer'
-import { Briefcase, Calendar, MapPin } from 'lucide-react'
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 export default function ExperiencePage() {
   const experiences = [
     {
-      title: 'Junior Software Developer',
-      company: 'One World Information Technology.',
-      location: 'Morgan Tower, Phnom Penh, Cambodia',
-      duration: 'July 2026 - August 2026',
-      description: 'Led design strategy for 5+ major product features. Mentored junior designers and established design standards across the organization.',
+      title: "Junior Software Developer",
+      company: "One World Information Technology.",
+      location: "Morgan Tower, Phnom Penh, Cambodia",
+      duration: "July 2026 - August 2026",
+      description:
+        "Develop odoo ERP Software to meet Cambodia Market and solve business owner problem",
       highlights: [
-        'Increased user engagement by 45% through redesigned interface',
-        'Built and maintained comprehensive design system',
-        'Collaborated with engineering to optimize performance',
-        'Conducted 30+ user research sessions',
+        "Using XML, python with FastAPI, and an Owl library, for database we use PostgreSQL and PostgRest for Rest API",
+        "Using Docker in Ubuntu Linux distribution during working with dockercompose.yml for running container of application",
+        "Build an Rest API using postgrest web server with database postgreSQL",
+        "Using GitHub for version control and GitHub Actions for CI/CD and distribute with team members",
       ],
     },
     // {
@@ -56,7 +57,7 @@ export default function ExperiencePage() {
     //     'Learned modern web development practices',
     //   ],
     // },
-  ]
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -66,7 +67,9 @@ export default function ExperiencePage() {
         {/* Hero */}
         <section className="bg-muted border-b border-border">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h1 className="text-5xl sm:text-6xl font-bold text-balance mb-4">Work Experience</h1>
+            <h1 className="text-5xl sm:text-6xl font-bold text-balance mb-4">
+              Work Experience
+            </h1>
             <p className="text-xl text-muted-foreground text-balance">
               A journey of growth, innovation, and impactful contributions
             </p>
@@ -84,7 +87,7 @@ export default function ExperiencePage() {
                 <div
                   key={idx}
                   className={`relative md:flex md:gap-8 ${
-                    idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                    idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
                   {/* Timeline dot */}
@@ -144,21 +147,23 @@ export default function ExperiencePage() {
         {/* Education */}
         <section className="bg-muted border-y border-border">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Education</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-12">
+              Education
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
-                  degree: 'Bachelor of Science in Computer Science',
-                  school: 'State University',
-                  year: '2015',
-                  gpa: '3.8 GPA',
+                  degree: "Bachelor of Science in Computer Science",
+                  school: "State University",
+                  year: "2015",
+                  gpa: "3.8 GPA",
                 },
                 {
-                  degree: 'Master of Design (Human-Centered Design)',
-                  school: 'Design Institute',
-                  year: '2018',
-                  gpa: '4.0 GPA',
+                  degree: "Master of Design (Human-Centered Design)",
+                  school: "Design Institute",
+                  year: "2018",
+                  gpa: "4.0 GPA",
                 },
               ].map((edu, idx) => (
                 <div
@@ -206,5 +211,5 @@ export default function ExperiencePage() {
 
       <Footer />
     </div>
-  )
+  );
 }
